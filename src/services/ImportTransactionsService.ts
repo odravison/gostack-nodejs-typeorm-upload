@@ -37,7 +37,12 @@ class ImportTransactionsService {
 
     // Data Management
     const processFile = async (): Promise<TransactionCSVData[]> => {
-      const parser = fs.createReadStream(currentPathImportFile).pipe(csv());
+      const parser = fs.createReadStream(currentPathImportFile).pipe(
+        csv({
+          mapHeaders: ({ header }) => header.trimLeft(),
+          mapValues: ({ value }) => value.trimLeft(),
+        }),
+      );
 
       return new Promise((resolve, reject) => {
         const promises: Promise<void>[] = [];
