@@ -6,7 +6,7 @@ export default class CreateCategoryEntity1609987971008
     await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: 'CATEGORY',
+        name: 'categories',
         columns: [
           {
             name: 'id',
@@ -36,6 +36,6 @@ export default class CreateCategoryEntity1609987971008
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('CATEGORY', true);
+    await queryRunner.dropTable('categories', true);
   }
 }

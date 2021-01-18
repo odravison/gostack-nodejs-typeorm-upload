@@ -12,11 +12,11 @@ interface Balance {
 class TransactionsRepository extends Repository<Transaction> {
   public async getBalance(): Promise<Balance> {
     const sumIncome = await this.query(
-      `select SUM(T.value) from "TRANSACTION" T where T.type = 'income'`,
+      `select SUM(T.value) from transactions T where T.type = 'income'`,
     );
 
     const sumOutcome = await this.query(
-      `select SUM(T.value) from "TRANSACTION" T where T.type = 'outcome'`,
+      `select SUM(T.value) from transactions T where T.type = 'outcome'`,
     );
 
     const income = parseFloat(sumIncome[0].sum || 0);
